@@ -39,21 +39,21 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
         return Ok(result);
     }
 
-    //// POST api/<AuthorController>
-    //[HttpPost]
-    //public void Post([FromBody] string value)
-    //{
-    //}
+    // PUT api/<AuthorController>/5
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, [FromBody] AuthorDto authorDto)
+    {
+        var result = await _authorService.UpdateAuthorAsync(id, authorDto);
 
-    //// PUT api/<AuthorController>/5
-    //[HttpPut("{id}")]
-    //public void Put(int id, [FromBody] string value)
-    //{
-    //}
+        return Ok(result);
+    }
 
-    //// DELETE api/<AuthorController>/5
-    //[HttpDelete("{id}")]
-    //public void Delete(int id)
-    //{
-    //}
+    // DELETE api/<AuthorController>/5
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var result = await _authorService.DeleteAuthorByIdAsync(id);
+
+        return Ok(result);
+    }
 }

@@ -8,7 +8,7 @@ public interface IRepository<T>
     Task<IEnumerable<T>> GetAsync();
     Task<IEnumerable<T>> GetAsync(Func<T, bool> filter);
     Task<T> AddAsync(T entity);
-    Task UpdateAsync(T entity);
+    Task<T> UpdateAsync(T entity);
     Task DeleteAsync(T entity);
     Task<T?> FirstOrDefaultAsync(Func<T, bool> filter);
     Task<T?> SingleOrDefaultAsync(Func<T, bool> filter);

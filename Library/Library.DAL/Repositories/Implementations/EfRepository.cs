@@ -35,10 +35,12 @@ public class EfRepository<T>(ApplicationDbContext dbContext)
         return entity;
     }
 
-    public async Task UpdateAsync(T entity)
+    public async Task<T> UpdateAsync(T entity)
     {
         await Task.Run(() => _entities.Update(entity));
         await _dbContext.SaveChangesAsync();
+
+        return entity;
     }
 
     public async Task DeleteAsync(T entity)

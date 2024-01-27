@@ -17,9 +17,9 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
     public async Task<AuthorDto> CreateAuthorAsync(AuthorDto authorDto)
     {
         var author = _mapper.Map<Author>(authorDto);
-        author = await _authorRepository.AddAsync(author);
+        var result = await _authorRepository.AddAsync(author);
 
-        return _mapper.Map<AuthorDto>(author);
+        return _mapper.Map<AuthorDto>(result);
     }
 
     public async Task<AuthorDto> GetAuthorByIdAsync(int id)
@@ -38,5 +38,33 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
         var authors = await _authorRepository.GetAsync();
 
         return _mapper.Map<IEnumerable<AuthorDto>>(authors);
+    }
+    
+    public async Task<AuthorDto> UpdateAuthorAsync(int id, AuthorDto authorDto)
+    {
+        if (!await _authorRepository.IsExistsAsync(id))
+        {
+            throw new ApiException(HttpStatusCode.NotFound, "Author is not found");
+        }
+
+        var author = _mapper.Map<Author>(authorDto);
+        author.Id = id;
+
+        var result = await _authorRepository.UpdateAsync(author);
+
+        return _mapper.Map<AuthorDto>(result);
+    } 
+
+    public async Task<AuthorDto> DeleteAuthorByIdAsync(int id)
+    {
+        if (!await _authorRepository.IsExistsAsync(id))
+        {
+            throw new ApiException(HttpStatusCode.NotFound, "Author is not found");
+        }
+
+        var author = await _authorRepository.GetByIdAsync(id);
+        await _authorRepository.DeleteAsync(author);
+
+        return _mapper.Map<AuthorDto>(author);
     }
 }
