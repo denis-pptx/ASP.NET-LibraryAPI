@@ -1,46 +1,43 @@
 ﻿using FluentValidation;
-using Library.API.Models;
 using Library.BLL.Models.DTO;
 using Library.BLL.Services.Interfaces;
+using Library.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthorController : ControllerBase
+public class AuthorController(IAuthorService authorService) : ControllerBase
 {
-    private readonly IAuthorService _authorService;
-    private Response _response;
-
-    public AuthorController(IAuthorService authorService)
-    {
-        _authorService = authorService;
-        _response = new Response();
-    }
+    private readonly IAuthorService _authorService = authorService;
 
     // POST api/<AuthorController>
     [HttpPost]
-    public async Task<object> Post([FromBody] AuthorDto authorDto)
+    public async Task<IActionResult> Post([FromBody] AuthorDto authorDto)
     {
-        _response.Result = await _authorService.CreateAuthorAsync(authorDto);
-        return _response;
+        var result = await _authorService.CreateAuthorAsync(authorDto);
+
+        return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
     }
 
     // GET: api/<AuthorController>
     [HttpGet]
-    public async Task<object> Get()
+    public async Task<IActionResult> Get()
     {
-        _response.Result = await _authorService.GetAuthorsAsync();
-        return _response;
+        var result = await _authorService.GetAuthorsAsync();
+
+        return Ok(result);
     }
 
-    //// GET api/<AuthorController>/5
-    //[HttpGet("{id}")]
-    //public string Get(int id)
-    //{
-    //    return "value";
-    //}
+    // GET api/<AuthorController>/5
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id)
+    {
+        var result = await _authorService.GetAuthorByIdAsync(id);
+
+        return Ok(result);
+    }
 
     //// POST api/<AuthorController>
     //[HttpPost]

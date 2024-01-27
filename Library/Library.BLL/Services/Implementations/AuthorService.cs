@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Library.BLL.Exceptions;
 using Library.BLL.Models.DTO;
 using Library.BLL.Services.Interfaces;
 using Library.DAL.Repositories.Interfaces;
 using Library.Domain.Entities;
+using System.Net;
 
 namespace Library.BLL.Services.Implementations;
 
@@ -17,6 +19,17 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
         var author = _mapper.Map<Author>(authorDto);
         author = await _authorRepository.AddAsync(author);
 
+        return _mapper.Map<AuthorDto>(author);
+    }
+
+    public async Task<AuthorDto> GetAuthorByIdAsync(int id)
+    {
+        if (!await _authorRepository.IsExistsAsync(id))
+        {
+            throw new ApiException(HttpStatusCode.NotFound, "Author is not found");
+        }
+
+        var author = await _authorRepository.GetByIdAsync(id);
         return _mapper.Map<AuthorDto>(author);
     }
 

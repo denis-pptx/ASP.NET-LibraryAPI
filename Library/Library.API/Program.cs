@@ -1,4 +1,5 @@
 using FluentValidation;
+using Library.API.Handlers;
 using Library.BLL;
 using Library.BLL.Models.Validators;
 using Library.BLL.Services.Implementations;
@@ -35,7 +36,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
+// Exceptions handling.
+builder.Services.AddExceptionHandler<ApiExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

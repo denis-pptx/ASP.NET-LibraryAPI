@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Library.BLL\Library.BLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Filters\" />
-  </ItemGroup>
-
 </Project>
