@@ -1,12 +1,13 @@
 ﻿using Library.BLL.Models.DTOs;
+using Library.Domain.Entities;
 
 namespace Library.BLL.Services.Interfaces;
 
 public interface IAuthorService
 {
-    Task<AuthorDto> CreateAuthorAsync(AuthorDto authorDto);
-    Task<IEnumerable<AuthorDto>> GetAuthorsAsync();
-    Task<AuthorDto> GetAuthorByIdAsync(int id);
-    Task<AuthorDto> UpdateAuthorAsync(int id, AuthorDto authorDto);
-    Task<AuthorDto> DeleteAuthorByIdAsync(int id);
+    Task<Author> CreateAuthorAsync(AuthorDto authorDto);
+    Task<IEnumerable<Author>> GetAuthorsAsync();
+    Task<Author> GetAuthorByIdAsync(int id);
+    Task<Author> UpdateAuthorAsync(int id, AuthorDto authorDto);
+    Task<Author> DeleteAuthorByIdAsync(int id);
 }

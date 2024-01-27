@@ -14,15 +14,15 @@ public class GenreService(IRepository<Genre> genreRepository, IMapper mapper)
     private readonly IRepository<Genre> _genreRepository = genreRepository;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<GenreDto> CreateGenreAsync(GenreDto genreDto)
+    public async Task<Genre> CreateGenreAsync(GenreDto genreDto)
     {
         var genre = _mapper.Map<Genre>(genreDto);
         var result = await _genreRepository.AddAsync(genre);
 
-        return _mapper.Map<GenreDto>(result);
+        return result;
     }
 
-    public async Task<GenreDto> GetGenreByIdAsync(int id)
+    public async Task<Genre> GetGenreByIdAsync(int id)
     {
         if (!await _genreRepository.IsExistsAsync(id))
         {
@@ -30,17 +30,17 @@ public class GenreService(IRepository<Genre> genreRepository, IMapper mapper)
         }
 
         var genre = await _genreRepository.GetByIdAsync(id);
-        return _mapper.Map<GenreDto>(genre);
+        return genre;
     }
 
-    public async Task<IEnumerable<GenreDto>> GetGenresAsync()
+    public async Task<IEnumerable<Genre>> GetGenresAsync()
     {
         var genres = await _genreRepository.GetAsync();
 
-        return _mapper.Map<IEnumerable<GenreDto>>(genres);
+        return genres;
     }
 
-    public async Task<GenreDto> UpdateGenreAsync(int id, GenreDto genreDto)
+    public async Task<Genre> UpdateGenreAsync(int id, GenreDto genreDto)
     {
         if (!await _genreRepository.IsExistsAsync(id))
         {
@@ -54,10 +54,10 @@ public class GenreService(IRepository<Genre> genreRepository, IMapper mapper)
 
         var result = await _genreRepository.UpdateAsync(genre);
 
-        return _mapper.Map<GenreDto>(result);
+        return result;
     }
 
-    public async Task<GenreDto> DeleteGenreByIdAsync(int id)
+    public async Task<Genre> DeleteGenreByIdAsync(int id)
     {
         if (!await _genreRepository.IsExistsAsync(id))
         {
@@ -67,6 +67,6 @@ public class GenreService(IRepository<Genre> genreRepository, IMapper mapper)
         var genre = await _genreRepository.GetByIdAsync(id);
         await _genreRepository.DeleteAsync(genre);
 
-        return _mapper.Map<GenreDto>(genre);
+        return genre;
     }
 }

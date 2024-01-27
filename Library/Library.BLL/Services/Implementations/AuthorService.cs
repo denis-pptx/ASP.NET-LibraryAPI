@@ -14,15 +14,15 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
     private readonly IRepository<Author> _authorRepository = authorRepository;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<AuthorDto> CreateAuthorAsync(AuthorDto authorDto)
+    public async Task<Author> CreateAuthorAsync(AuthorDto authorDto)
     {
         var author = _mapper.Map<Author>(authorDto);
         var result = await _authorRepository.AddAsync(author);
 
-        return _mapper.Map<AuthorDto>(result);
+        return result;
     }
 
-    public async Task<AuthorDto> GetAuthorByIdAsync(int id)
+    public async Task<Author> GetAuthorByIdAsync(int id)
     {
         if (!await _authorRepository.IsExistsAsync(id))
         {
@@ -30,17 +30,17 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
         }
 
         var author = await _authorRepository.GetByIdAsync(id);
-        return _mapper.Map<AuthorDto>(author);
+        return author;
     }
 
-    public async Task<IEnumerable<AuthorDto>> GetAuthorsAsync()
+    public async Task<IEnumerable<Author>> GetAuthorsAsync()
     {
         var authors = await _authorRepository.GetAsync();
 
-        return _mapper.Map<IEnumerable<AuthorDto>>(authors);
+        return authors;
     }
     
-    public async Task<AuthorDto> UpdateAuthorAsync(int id, AuthorDto authorDto)
+    public async Task<Author> UpdateAuthorAsync(int id, AuthorDto authorDto)
     {
         if (!await _authorRepository.IsExistsAsync(id))
         {
@@ -54,10 +54,10 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
 
         var result = await _authorRepository.UpdateAsync(author);
 
-        return _mapper.Map<AuthorDto>(result);
+        return result;
     } 
 
-    public async Task<AuthorDto> DeleteAuthorByIdAsync(int id)
+    public async Task<Author> DeleteAuthorByIdAsync(int id)
     {
         if (!await _authorRepository.IsExistsAsync(id))
         {
@@ -67,6 +67,6 @@ public class AuthorService(IRepository<Author> authorRepository, IMapper mapper)
         var author = await _authorRepository.GetByIdAsync(id);
         await _authorRepository.DeleteAsync(author);
 
-        return _mapper.Map<AuthorDto>(author);
+        return author;
     }
 }
