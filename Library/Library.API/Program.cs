@@ -34,6 +34,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite
 
 // Services configuration.
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 // Exceptions handling.

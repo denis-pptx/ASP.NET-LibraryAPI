@@ -1,4 +1,4 @@
-﻿using Library.BLL.Models.DTO;
+﻿using Library.BLL.Models.DTOs;
 
 namespace Library.BLL.Services.Interfaces;
 

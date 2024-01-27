@@ -17,9 +17,6 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             .HasMaxLength(50)
             .IsRequired();
 
-        builder.HasIndex(x => x.Name)
-            .IsUnique();
-
         builder.Property(x => x.Description)
             .HasMaxLength(300);
 
