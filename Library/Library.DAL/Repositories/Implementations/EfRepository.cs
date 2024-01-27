@@ -27,10 +27,12 @@ public class EfRepository<T>(ApplicationDbContext dbContext)
         return await Task.Run(() => _entities.Where(filter));
     }
 
-    public async Task AddAsync(T entity)
+    public async Task<T> AddAsync(T entity)
     {
         await _entities.AddAsync(entity);
         await _dbContext.SaveChangesAsync();
+
+        return entity;
     }
 
     public async Task UpdateAsync(T entity)
