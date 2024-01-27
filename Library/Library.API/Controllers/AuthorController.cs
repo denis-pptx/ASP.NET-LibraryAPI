@@ -1,4 +1,5 @@
-﻿using Library.API.Models;
+﻿using FluentValidation;
+using Library.API.Models;
 using Library.BLL.Models.DTO;
 using Library.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;

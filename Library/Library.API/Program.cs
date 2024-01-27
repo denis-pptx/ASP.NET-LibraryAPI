@@ -1,10 +1,14 @@
+using FluentValidation;
 using Library.BLL;
+using Library.BLL.Models.Validators;
 using Library.BLL.Services.Implementations;
 using Library.BLL.Services.Interfaces;
 using Library.DAL.Data;
 using Library.DAL.Repositories.Implementations;
 using Library.DAL.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +22,10 @@ builder.Services.AddSwaggerGen();
 
 // AutoMapper configuration.
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+// Validation configuration.
+builder.Services.AddValidatorsFromAssemblyContaining<AuthorValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 // Database configuration.
 var connection = builder.Configuration.GetConnectionString("Default");
