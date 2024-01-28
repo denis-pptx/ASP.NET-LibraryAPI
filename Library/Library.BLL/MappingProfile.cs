@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using Library.BLL.Models.DTOs;
-using Library.Domain.Entities;
-
-namespace Library.BLL;
+﻿namespace Library.BLL;
 
 public class MappingProfile : Profile
 {

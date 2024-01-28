@@ -1,8 +1,4 @@
-﻿using Library.BLL.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Library.API.Handlers;
+﻿namespace Library.API.Handlers;
 
 public class ApiExceptionHandler : IExceptionHandler
 {

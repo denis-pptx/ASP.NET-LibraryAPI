@@ -1,11 +1,4 @@
-﻿using FluentValidation;
-using Library.BLL.Models.DTOs;
-using Library.BLL.Services.Implementations;
-using Library.BLL.Services.Interfaces;
-using Library.DAL.Repositories.Interfaces;
-using Library.Domain.Entities;
-
-namespace Library.BLL.Models.Validators;
+﻿namespace Library.BLL.Models.Validators;
 
 public class AuthorValidator : AbstractValidator<AuthorDto>
 {

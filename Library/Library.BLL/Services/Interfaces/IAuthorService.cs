@@ -1,7 +1,4 @@
-﻿using Library.BLL.Models.DTOs;
-using Library.Domain.Entities;
-
-namespace Library.BLL.Services.Interfaces;
+﻿namespace Library.BLL.Services.Interfaces;
 
 public interface IAuthorService
 {

@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace Library.BLL.Exceptions;
+﻿namespace Library.BLL.Exceptions;
 
 public class ApiException : Exception
 {

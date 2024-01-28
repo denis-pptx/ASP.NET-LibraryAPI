@@ -1,12 +1,4 @@
-﻿using AutoMapper;
-using Library.BLL.Exceptions;
-using Library.BLL.Models.DTOs;
-using Library.BLL.Services.Interfaces;
-using Library.DAL.Repositories.Interfaces;
-using Library.Domain.Entities;
-using System.Net;
-
-namespace Library.BLL.Services.Implementations;
+﻿namespace Library.BLL.Services.Implementations;
 
 public class AuthorService(IRepository<Author> authorRepository, IMapper mapper) 
     : IAuthorService

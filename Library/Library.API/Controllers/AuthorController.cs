@@ -1,10 +1,4 @@
-﻿using FluentValidation;
-using Library.BLL.Models.DTOs;
-using Library.BLL.Services.Interfaces;
-using Library.Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Library.API.Controllers;
+﻿namespace Library.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
