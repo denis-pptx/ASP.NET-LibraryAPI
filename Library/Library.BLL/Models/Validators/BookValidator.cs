@@ -5,6 +5,7 @@ public class BookValidator : AbstractValidator<BookDto>
     private readonly IRepository<Book> _bookRepository;
     private readonly IRepository<Author> _authorRepository;
     private readonly IRepository<Genre> _genreRepository;
+
     public BookValidator(
         IRepository<Book> bookRepository, 
         IRepository<Author> authorRepository, 
@@ -17,8 +18,11 @@ public class BookValidator : AbstractValidator<BookDto>
         RuleFor(b => b.ISBN)
             .NotEmpty()
             .MinimumLength(10)
-            .MaximumLength(30)
-            .Must(ISBN => _bookRepository.FirstOrDefaultAsync(b => b.ISBN == ISBN).Result == null)
+            .MaximumLength(30);
+
+        RuleFor(b => b)
+            .Must(book => _bookRepository
+                .FirstOrDefaultAsync(b => b.ISBN == book.ISBN && b.Id != book.Id).Result == null)
             .WithMessage("This ISBN already exists");
 
         RuleFor(b => b.Name)

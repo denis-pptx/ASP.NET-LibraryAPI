@@ -10,16 +10,12 @@ public class AuthorValidator : AbstractValidator<AuthorDto>
         RuleFor(a => a.Name)
             .NotEmpty()
             .MinimumLength(3)
-            .MaximumLength(50)
-            .Must(UniqueName)
+            .MaximumLength(50);
+
+        RuleFor(a => a)
+            .Must(author => _authorReposistory
+                .FirstOrDefaultAsync(a => a.Name == author.Name && a.Id != author.Id).Result == null)
             .WithMessage("This name already exists");
-    }
-
-    private bool UniqueName(string name)
-    {
-        Author? author = _authorReposistory.FirstOrDefaultAsync(a => a.Name == name).Result;
-
-        return author == null;
     }
 }
 

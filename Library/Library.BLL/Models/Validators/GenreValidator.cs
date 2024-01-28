@@ -11,9 +11,12 @@ public class GenreValidator : AbstractValidator<GenreDto>
         RuleFor(a => a.Name)
            .NotEmpty()
            .MinimumLength(3)
-           .MaximumLength(50)
-           .Must(UniqueName)
-           .WithMessage("This name already exists"); 
+           .MaximumLength(50);
+
+        RuleFor(g => g)
+            .Must(genre => _genreReposistory
+                .FirstOrDefaultAsync(g => g.Name == genre.Name && g.Id != genre.Id).Result == null)
+            .WithMessage("This name already exists");
     }
 
     private bool UniqueName(string name)

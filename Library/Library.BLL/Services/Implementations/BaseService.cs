@@ -45,7 +45,7 @@ public abstract class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, T
     {
         if (!await _entityRepository.IsExistsAsync(id))
         {
-            throw new ApiException(HttpStatusCode.NotFound, $"{nameof(TEntity)} is not found");
+            throw new ApiException(HttpStatusCode.NotFound, $"{typeof(TEntity).Name} is not found");
         }
 
         var entity = await _entityRepository.GetByIdAsync(id);

@@ -70,147 +70,151 @@ public static class SeedData
             new Book
             {
                 Id = 1,
-                ISBN = "1234567890",
+                ISBN = "011234567891223",
                 Name = "The Galactic Odyssey",
+                Description = "A thrilling journey through the galaxy.",
                 GenreId = 1,
-                AuthorId = 1,
+                AuthorId = 3,
                 CaptureDate = DateTime.Now.AddDays(-30),
                 ReturnDate = DateTime.Now.AddDays(30)
             },
             new Book
             {
                 Id = 2,
-                ISBN = "0987654321",
+                ISBN = "301234567891423",
                 Name = "Love Beyond Stars",
+                Description = "Exploring the realms of love beyond the stars.",
                 GenreId = 2,
-                AuthorId = 2,
+                AuthorId = 6,
                 CaptureDate = DateTime.Now.AddDays(-20),
                 ReturnDate = DateTime.Now.AddDays(40)
             },
             new Book
             {
                 Id = 3,
-                ISBN = "2345678901",
+                ISBN = "051234567869123",
                 Name = "Whispers in the Shadows",
-                GenreId = 3,
-                AuthorId = 3,
+                GenreId = 8,
+                AuthorId = 8,
                 CaptureDate = DateTime.Now.AddDays(-10),
                 ReturnDate = DateTime.Now.AddDays(50)
             },
             new Book
             {
                 Id = 4,
-                ISBN = "3456789012",
+                ISBN = "012346567891273",
                 Name = "Thrill Seeker",
-                GenreId = 4,
-                AuthorId = 4,
+                GenreId = 3,
+                AuthorId = 6,
                 CaptureDate = DateTime.Now.AddDays(-15),
                 ReturnDate = DateTime.Now.AddDays(35)
             },
             new Book
             {
                 Id = 5,
-                ISBN = "4567890123",
+                ISBN = "01234567899123",
                 Name = "Realm of Dreams",
-                GenreId = 5,
-                AuthorId = 5,
+                GenreId = 10,
+                AuthorId = 1,
                 CaptureDate = DateTime.Now.AddDays(-25),
                 ReturnDate = DateTime.Now.AddDays(45)
             },
             new Book
             {
                 Id = 6,
-                ISBN = "5678901234",
+                ISBN = "012345367891523",
                 Name = "Time Traveler's Journal",
-                GenreId = 6,
-                AuthorId = 6,
+                GenreId = 2,
+                AuthorId = 8,
                 CaptureDate = DateTime.Now.AddDays(-5),
                 ReturnDate = DateTime.Now.AddDays(55)
             },
             new Book
             {
                 Id = 7,
-                ISBN = "6789012345",
+                ISBN = "012234567189123",
                 Name = "Inspirations",
-                GenreId = 7,
-                AuthorId = 7,
+                GenreId = 9,
+                AuthorId = 9,
                 CaptureDate = DateTime.Now.AddDays(-12),
                 ReturnDate = DateTime.Now.AddDays(42)
             },
             new Book
             {
                 Id = 8,
-                ISBN = "7890123456",
+                ISBN = "012345679289123",
                 Name = "Verses of the Soul",
-                GenreId = 8,
-                AuthorId = 8,
+                GenreId = 4,
+                AuthorId = 9,
                 CaptureDate = DateTime.Now.AddDays(-18),
                 ReturnDate = DateTime.Now.AddDays(48)
             },
             new Book
             {
                 Id = 9,
-                ISBN = "8901234567",
+                ISBN = "01234597566789123",
                 Name = "Wonders of Science",
-                GenreId = 9,
-                AuthorId = 9,
+                GenreId = 2,
+                AuthorId = 3,
                 CaptureDate = DateTime.Now.AddDays(-8),
                 ReturnDate = DateTime.Now.AddDays(38)
             },
             new Book
             {
                 Id = 10,
-                ISBN = "9012345678",
+                ISBN = "240123456789123",
                 Name = "The Power Within",
-                GenreId = 10,
-                AuthorId = 10,
+                GenreId = 1,
+                AuthorId = 6,
                 CaptureDate = DateTime.Now.AddDays(-22),
                 ReturnDate = DateTime.Now.AddDays(32)
             },
             new Book
             {
                 Id = 11,
-                ISBN = "1122334455",
+                ISBN = "012683456789123",
                 Name = "Epic Journey",
-                GenreId = 1,
-                AuthorId = 2,
+                Description = "An epic adventure with twists and turns.",
+                GenreId = 2,
+                AuthorId = 4,
                 CaptureDate = DateTime.Now.AddDays(-35),
                 ReturnDate = DateTime.Now.AddDays(25)
             },
             new Book
             {
                 Id = 12,
-                ISBN = "5544332211",
+                ISBN = "0123456789124123",
                 Name = "Enchanted Love",
-                GenreId = 2,
-                AuthorId = 3,
+                Description = "A magical tale of enchanted love.",
+                GenreId = 7,
+                AuthorId = 9,
                 CaptureDate = DateTime.Now.AddDays(-15),
                 ReturnDate = DateTime.Now.AddDays(30)
             },
             new Book
             {
                 Id = 13,
-                ISBN = "9876543210",
+                ISBN = "0123459856789123",
                 Name = "Secrets Unveiled",
-                GenreId = 3,
-                AuthorId = 4,
+                GenreId = 10,
+                AuthorId = 2,
                 CaptureDate = DateTime.Now.AddDays(-25),
                 ReturnDate = DateTime.Now.AddDays(40)
             },
             new Book
             {
                 Id = 14,
-                ISBN = "1122334455",
+                ISBN = "0121453456789123",
                 Name = "Mind Games",
-                GenreId = 4,
-                AuthorId = 5,
+                GenreId = 5,
+                AuthorId = 7,
                 CaptureDate = DateTime.Now.AddDays(-20),
                 ReturnDate = DateTime.Now.AddDays(35)
             },
             new Book
             {
                 Id = 15,
-                ISBN = "3344556677",
+                ISBN = "0123484567891232",
                 Name = "Mythical Realms",
                 GenreId = 5,
                 AuthorId = 6,
@@ -220,9 +224,9 @@ public static class SeedData
             new Book
             {
                 Id = 16,
-                ISBN = "7788990011",
+                ISBN = "01234567891236412",
                 Name = "Era of Kings",
-                GenreId = 6,
+                GenreId = 1,
                 AuthorId = 7,
                 CaptureDate = DateTime.Now.AddDays(-10),
                 ReturnDate = DateTime.Now.AddDays(50)
@@ -230,40 +234,41 @@ public static class SeedData
             new Book
             {
                 Id = 17,
-                ISBN = "2233445566",
+                ISBN = "1240123456789123",
                 Name = "Journey to Enlightenment",
-                GenreId = 7,
-                AuthorId = 8,
+                GenreId = 4,
+                AuthorId = 7,
                 CaptureDate = DateTime.Now.AddDays(-22),
                 ReturnDate = DateTime.Now.AddDays(32)
             },
             new Book
             {
                 Id = 18,
-                ISBN = "6677889900",
+                ISBN = "0122345637189123",
                 Name = "Whispers of Nature",
                 GenreId = 8,
-                AuthorId = 9,
+                AuthorId = 6,
                 CaptureDate = DateTime.Now.AddDays(-18),
                 ReturnDate = DateTime.Now.AddDays(38)
             },
             new Book
             {
                 Id = 19,
-                ISBN = "1122334455",
+                ISBN = "10122324567891623",
                 Name = "Scientific Discoveries",
-                GenreId = 9,
-                AuthorId = 10,
+                GenreId = 8,
+                AuthorId = 7,
                 CaptureDate = DateTime.Now.AddDays(-12),
                 ReturnDate = DateTime.Now.AddDays(42)
             },
             new Book
             {
                 Id = 20,
-                ISBN = "3344556677",
+                ISBN = "0123456789123555",
                 Name = "The Mindful Journey",
-                GenreId = 10,
-                AuthorId = 1,
+                Description = "Embark on a mindful journey of self-discovery.",
+                GenreId = 3,
+                AuthorId = 6,
                 CaptureDate = DateTime.Now.AddDays(-8),
                 ReturnDate = DateTime.Now.AddDays(48)
             },
