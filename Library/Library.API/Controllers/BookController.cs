@@ -34,6 +34,15 @@ public class BookController(IBookService bookService) : ControllerBase
         return Ok(result);
     }
 
+    // GET api/<BookController>/isbn/1234567890
+    [HttpGet("isbn/{isbn}")]
+    public async Task<IActionResult> Get(string isbn)
+    {
+        var result = await _bookService.GetByIsbnAsync(isbn);
+
+        return Ok(result);
+    }
+
     // PUT api/<BookController>/5
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] BookDto bookDto)
