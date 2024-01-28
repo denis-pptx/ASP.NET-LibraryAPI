@@ -10,16 +10,16 @@ public class BookController(IBookService bookService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] BookDto bookDto)
     {
-        var result = await _bookService.CreateBookAsync(bookDto);
+        var result = await _bookService.CreateAsync(bookDto);
 
-        return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
+        return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
     }
 
     // GET: api/<BookController>
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _bookService.GetBooksAsync();
+        var result = await _bookService.GetAsync();
 
         return Ok(result);
     }
@@ -28,7 +28,7 @@ public class BookController(IBookService bookService) : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var result = await _bookService.GetBookByIdAsync(id);
+        var result = await _bookService.GetByIdAsync(id);
 
         return Ok(result);
     }
@@ -37,7 +37,7 @@ public class BookController(IBookService bookService) : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] BookDto bookDto)
     {
-        var result = await _bookService.UpdateBookAsync(id, bookDto);
+        var result = await _bookService.UpdateAsync(id, bookDto);
 
         return Ok(result);
     }
@@ -46,7 +46,7 @@ public class BookController(IBookService bookService) : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _bookService.DeleteBookByIdAsync(id);
+        var result = await _bookService.DeleteByIdAsync(id);
 
         return Ok(result);
     }

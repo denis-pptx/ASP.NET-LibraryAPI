@@ -10,7 +10,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] GenreDto genreDto)
     {
-        var result = await _genreService.CreateGenreAsync(genreDto);
+        var result = await _genreService.CreateAsync(genreDto);
 
         return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
     }
@@ -19,7 +19,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _genreService.GetGenresAsync();
+        var result = await _genreService.GetAsync();
 
         return Ok(result);
     }
@@ -28,7 +28,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var result = await _genreService.GetGenreByIdAsync(id);
+        var result = await _genreService.GetByIdAsync(id);
 
         return Ok(result);
     }
@@ -37,7 +37,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] GenreDto genreDto)
     {
-        var result = await _genreService.UpdateGenreAsync(id, genreDto);
+        var result = await _genreService.UpdateAsync(id, genreDto);
 
         return Ok(result);
     }
@@ -46,7 +46,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _genreService.DeleteGenreByIdAsync(id);
+        var result = await _genreService.DeleteByIdAsync(id);
 
         return Ok(result);
     }

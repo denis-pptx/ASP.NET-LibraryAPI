@@ -1,8 +1,7 @@
 ﻿namespace Library.BLL.Models.DTOs;
 
-public class BookDto
+public class BookDto : EntityDto
 {
-    public int Id { get; set; }
     public string ISBN { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string? Description { get; set; }

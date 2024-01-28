@@ -10,7 +10,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] AuthorDto authorDto)
     {
-        var result = await _authorService.CreateAuthorAsync(authorDto);
+        var result = await _authorService.CreateAsync(authorDto);
 
         return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
     }
@@ -19,7 +19,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var result = await _authorService.GetAuthorsAsync();
+        var result = await _authorService.GetAsync();
 
         return Ok(result);
     }
@@ -28,7 +28,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var result = await _authorService.GetAuthorByIdAsync(id);
+        var result = await _authorService.GetByIdAsync(id);
 
         return Ok(result);
     }
@@ -37,7 +37,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, [FromBody] AuthorDto authorDto)
     {
-        var result = await _authorService.UpdateAuthorAsync(id, authorDto);
+        var result = await _authorService.UpdateAsync(id, authorDto);
 
         return Ok(result);
     }
@@ -46,7 +46,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await _authorService.DeleteAuthorByIdAsync(id);
+        var result = await _authorService.DeleteByIdAsync(id);
 
         return Ok(result);
     }

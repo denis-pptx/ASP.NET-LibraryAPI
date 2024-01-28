@@ -1,10 +1,6 @@
 ﻿namespace Library.BLL.Services.Interfaces;
 
-public interface IGenreService
+public interface IGenreService : IBaseService<Genre, GenreDto>
 {
-    Task<Genre> CreateGenreAsync(GenreDto genreDto);
-    Task<IEnumerable<Genre>> GetGenresAsync();
-    Task<Genre> GetGenreByIdAsync(int id);
-    Task<Genre> UpdateGenreAsync(int id, GenreDto genreDto);
-    Task<Genre> DeleteGenreByIdAsync(int id);
+
 }
