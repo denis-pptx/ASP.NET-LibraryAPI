@@ -1,7 +1,11 @@
-﻿namespace Library.API.Handlers;
+﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
 
-public class ApiExceptionHandler : IExceptionHandler
+namespace Library.API.Handlers;
+
+public class ApiExceptionHandler(ProblemDetailsFactory problemDetailsFactory) : IExceptionHandler
 {
+    private readonly ProblemDetailsFactory _problemDetailsFactory = problemDetailsFactory;
+
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext, 
         Exception exception, 
@@ -12,13 +16,11 @@ public class ApiExceptionHandler : IExceptionHandler
             return false;
         }
 
-        var problemDetails = new ProblemDetails
-        {
-            Status = (int)apiException.StatusCode,
-            Detail = apiException.Message
-        };
+        var problemDetails = _problemDetailsFactory.CreateProblemDetails(httpContext, 
+            statusCode: (int)apiException.StatusCode, 
+            detail: apiException.Message);
 
-        httpContext.Response.StatusCode = problemDetails.Status.Value;
+        httpContext.Response.StatusCode = (int)apiException.StatusCode;
 
         await httpContext.Response
             .WriteAsJsonAsync(problemDetails, cancellationToken);
