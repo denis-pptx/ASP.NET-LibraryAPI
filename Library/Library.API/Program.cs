@@ -7,6 +7,7 @@ using Library.BLL.Services.Interfaces;
 using Library.DAL.Data;
 using Library.DAL.Repositories.Implementations;
 using Library.DAL.Repositories.Interfaces;
+using Library.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
@@ -30,11 +31,16 @@ builder.Services.AddFluentValidationAutoValidation();
 
 // Database configuration.
 var connection = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlite(connection));
 
 // Services configuration.
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IGenreService, GenreService>();
+builder.Services.AddScoped<IBookService, BookService>();
+
+// Repositories configuration.
+builder.Services.AddScoped<IRepository<Book>, EfBookRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 // Exceptions handling.
