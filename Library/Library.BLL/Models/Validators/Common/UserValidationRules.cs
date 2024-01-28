@@ -12,7 +12,7 @@ public static class UserValidationRules
 
     public static IRuleBuilderOptions<T, string> ApplyLoginUniqueRule<T>(this IRuleBuilder<T, string> ruleBuilder, IRepository<User> userRepository)
     {
-        return ruleBuilder.Must(login => userRepository.FirstOrDefaultAsync(u => u.Login == login) == null)
+        return ruleBuilder.Must(login => userRepository.FirstOrDefaultAsync(u => u.Login == login).Result == null)
             .WithMessage("This login already exists"); ;
     }
 
