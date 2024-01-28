@@ -3,6 +3,7 @@ using System;
 using Library.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240128190600_Data-Seed")]
+    partial class DataSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -136,201 +139,201 @@ namespace Library.DAL.Migrations
                         {
                             Id = 1,
                             AuthorId = 1,
-                            CaptureDate = new DateTime(2023, 12, 29, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7422),
+                            CaptureDate = new DateTime(2023, 12, 29, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1933),
                             GenreId = 1,
                             ISBN = "1234567890",
                             Name = "The Galactic Odyssey",
-                            ReturnDate = new DateTime(2024, 2, 27, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7442)
+                            ReturnDate = new DateTime(2024, 2, 27, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1953)
                         },
                         new
                         {
                             Id = 2,
                             AuthorId = 2,
-                            CaptureDate = new DateTime(2024, 1, 8, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7444),
+                            CaptureDate = new DateTime(2024, 1, 8, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1955),
                             GenreId = 2,
                             ISBN = "0987654321",
                             Name = "Love Beyond Stars",
-                            ReturnDate = new DateTime(2024, 3, 8, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7445)
+                            ReturnDate = new DateTime(2024, 3, 8, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1956)
                         },
                         new
                         {
                             Id = 3,
                             AuthorId = 3,
-                            CaptureDate = new DateTime(2024, 1, 18, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7447),
+                            CaptureDate = new DateTime(2024, 1, 18, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1957),
                             GenreId = 3,
                             ISBN = "2345678901",
                             Name = "Whispers in the Shadows",
-                            ReturnDate = new DateTime(2024, 3, 18, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7447)
+                            ReturnDate = new DateTime(2024, 3, 18, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1958)
                         },
                         new
                         {
                             Id = 4,
                             AuthorId = 4,
-                            CaptureDate = new DateTime(2024, 1, 13, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7449),
+                            CaptureDate = new DateTime(2024, 1, 13, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1959),
                             GenreId = 4,
                             ISBN = "3456789012",
                             Name = "Thrill Seeker",
-                            ReturnDate = new DateTime(2024, 3, 3, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7449)
+                            ReturnDate = new DateTime(2024, 3, 3, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1960)
                         },
                         new
                         {
                             Id = 5,
                             AuthorId = 5,
-                            CaptureDate = new DateTime(2024, 1, 3, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7450),
+                            CaptureDate = new DateTime(2024, 1, 3, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1961),
                             GenreId = 5,
                             ISBN = "4567890123",
                             Name = "Realm of Dreams",
-                            ReturnDate = new DateTime(2024, 3, 13, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7451)
+                            ReturnDate = new DateTime(2024, 3, 13, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1961)
                         },
                         new
                         {
                             Id = 6,
                             AuthorId = 6,
-                            CaptureDate = new DateTime(2024, 1, 23, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7492),
+                            CaptureDate = new DateTime(2024, 1, 23, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1963),
                             GenreId = 6,
                             ISBN = "5678901234",
                             Name = "Time Traveler's Journal",
-                            ReturnDate = new DateTime(2024, 3, 23, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7493)
+                            ReturnDate = new DateTime(2024, 3, 23, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1963)
                         },
                         new
                         {
                             Id = 7,
                             AuthorId = 7,
-                            CaptureDate = new DateTime(2024, 1, 16, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7494),
+                            CaptureDate = new DateTime(2024, 1, 16, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1965),
                             GenreId = 7,
                             ISBN = "6789012345",
                             Name = "Inspirations",
-                            ReturnDate = new DateTime(2024, 3, 10, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7495)
+                            ReturnDate = new DateTime(2024, 3, 10, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1965)
                         },
                         new
                         {
                             Id = 8,
                             AuthorId = 8,
-                            CaptureDate = new DateTime(2024, 1, 10, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7496),
+                            CaptureDate = new DateTime(2024, 1, 10, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1967),
                             GenreId = 8,
                             ISBN = "7890123456",
                             Name = "Verses of the Soul",
-                            ReturnDate = new DateTime(2024, 3, 16, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7497)
+                            ReturnDate = new DateTime(2024, 3, 16, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1967)
                         },
                         new
                         {
                             Id = 9,
                             AuthorId = 9,
-                            CaptureDate = new DateTime(2024, 1, 20, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7498),
+                            CaptureDate = new DateTime(2024, 1, 20, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1968),
                             GenreId = 9,
                             ISBN = "8901234567",
                             Name = "Wonders of Science",
-                            ReturnDate = new DateTime(2024, 3, 6, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7499)
+                            ReturnDate = new DateTime(2024, 3, 6, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1969)
                         },
                         new
                         {
                             Id = 10,
                             AuthorId = 10,
-                            CaptureDate = new DateTime(2024, 1, 6, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7500),
+                            CaptureDate = new DateTime(2024, 1, 6, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1970),
                             GenreId = 10,
                             ISBN = "9012345678",
                             Name = "The Power Within",
-                            ReturnDate = new DateTime(2024, 2, 29, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7500)
+                            ReturnDate = new DateTime(2024, 2, 29, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1971)
                         },
                         new
                         {
                             Id = 11,
                             AuthorId = 2,
-                            CaptureDate = new DateTime(2023, 12, 24, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7502),
+                            CaptureDate = new DateTime(2023, 12, 24, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1972),
                             GenreId = 1,
                             ISBN = "1122334455",
                             Name = "Epic Journey",
-                            ReturnDate = new DateTime(2024, 2, 22, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7502)
+                            ReturnDate = new DateTime(2024, 2, 22, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1972)
                         },
                         new
                         {
                             Id = 12,
                             AuthorId = 3,
-                            CaptureDate = new DateTime(2024, 1, 13, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7503),
+                            CaptureDate = new DateTime(2024, 1, 13, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1974),
                             GenreId = 2,
                             ISBN = "5544332211",
                             Name = "Enchanted Love",
-                            ReturnDate = new DateTime(2024, 2, 27, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7504)
+                            ReturnDate = new DateTime(2024, 2, 27, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1974)
                         },
                         new
                         {
                             Id = 13,
                             AuthorId = 4,
-                            CaptureDate = new DateTime(2024, 1, 3, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7505),
+                            CaptureDate = new DateTime(2024, 1, 3, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1975),
                             GenreId = 3,
                             ISBN = "9876543210",
                             Name = "Secrets Unveiled",
-                            ReturnDate = new DateTime(2024, 3, 8, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7506)
+                            ReturnDate = new DateTime(2024, 3, 8, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1976)
                         },
                         new
                         {
                             Id = 14,
                             AuthorId = 5,
-                            CaptureDate = new DateTime(2024, 1, 8, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7507),
+                            CaptureDate = new DateTime(2024, 1, 8, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1977),
                             GenreId = 4,
                             ISBN = "1122334455",
                             Name = "Mind Games",
-                            ReturnDate = new DateTime(2024, 3, 3, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7508)
+                            ReturnDate = new DateTime(2024, 3, 3, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1977)
                         },
                         new
                         {
                             Id = 15,
                             AuthorId = 6,
-                            CaptureDate = new DateTime(2023, 12, 29, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7509),
+                            CaptureDate = new DateTime(2023, 12, 29, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1979),
                             GenreId = 5,
                             ISBN = "3344556677",
                             Name = "Mythical Realms",
-                            ReturnDate = new DateTime(2024, 3, 13, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7510)
+                            ReturnDate = new DateTime(2024, 3, 13, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1979)
                         },
                         new
                         {
                             Id = 16,
                             AuthorId = 7,
-                            CaptureDate = new DateTime(2024, 1, 18, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7511),
+                            CaptureDate = new DateTime(2024, 1, 18, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1980),
                             GenreId = 6,
                             ISBN = "7788990011",
                             Name = "Era of Kings",
-                            ReturnDate = new DateTime(2024, 3, 18, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7511)
+                            ReturnDate = new DateTime(2024, 3, 18, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1981)
                         },
                         new
                         {
                             Id = 17,
                             AuthorId = 8,
-                            CaptureDate = new DateTime(2024, 1, 6, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7513),
+                            CaptureDate = new DateTime(2024, 1, 6, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1982),
                             GenreId = 7,
                             ISBN = "2233445566",
                             Name = "Journey to Enlightenment",
-                            ReturnDate = new DateTime(2024, 2, 29, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7513)
+                            ReturnDate = new DateTime(2024, 2, 29, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1983)
                         },
                         new
                         {
                             Id = 18,
                             AuthorId = 9,
-                            CaptureDate = new DateTime(2024, 1, 10, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7514),
+                            CaptureDate = new DateTime(2024, 1, 10, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1984),
                             GenreId = 8,
                             ISBN = "6677889900",
                             Name = "Whispers of Nature",
-                            ReturnDate = new DateTime(2024, 3, 6, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7515)
+                            ReturnDate = new DateTime(2024, 3, 6, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1984)
                         },
                         new
                         {
                             Id = 19,
                             AuthorId = 10,
-                            CaptureDate = new DateTime(2024, 1, 16, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7516),
+                            CaptureDate = new DateTime(2024, 1, 16, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1985),
                             GenreId = 9,
                             ISBN = "1122334455",
                             Name = "Scientific Discoveries",
-                            ReturnDate = new DateTime(2024, 3, 10, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7517)
+                            ReturnDate = new DateTime(2024, 3, 10, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1986)
                         },
                         new
                         {
                             Id = 20,
                             AuthorId = 1,
-                            CaptureDate = new DateTime(2024, 1, 20, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7518),
+                            CaptureDate = new DateTime(2024, 1, 20, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1987),
                             GenreId = 10,
                             ISBN = "3344556677",
                             Name = "The Mindful Journey",
-                            ReturnDate = new DateTime(2024, 3, 16, 22, 10, 52, 914, DateTimeKind.Local).AddTicks(7519)
+                            ReturnDate = new DateTime(2024, 3, 16, 22, 5, 59, 751, DateTimeKind.Local).AddTicks(1987)
                         });
                 });
 
@@ -426,14 +429,6 @@ namespace Library.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Login = "admin",
-                            PasswordHash = "$2a$11$G28u7EHEJ8HPvATIii1DRuLLd7LcAmMNKZY./2EsXCOb1wKvbgbGi"
-                        });
                 });
 
             modelBuilder.Entity("Library.Domain.Entities.Book", b =>

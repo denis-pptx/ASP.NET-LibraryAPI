@@ -20,6 +20,6 @@ public static class UserValidationRules
     {
         return ruleBuilder
             .NotEmpty().WithMessage("Password can't be empty")
-            .Length(6, 100).WithMessage("Password must be between 6 and 100 characters");
+            .Length(5, 100).WithMessage("Password must be between 5 and 100 characters");
     }
 }
