@@ -1,4 +1,4 @@
-﻿namespace Library.DAL.Data;
+﻿namespace Library.DAL.Data.Configuration;
 
 public class GenreConfiguration : IEntityTypeConfiguration<Genre>
 {

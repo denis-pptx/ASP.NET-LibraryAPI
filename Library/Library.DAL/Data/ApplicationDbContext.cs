@@ -19,5 +19,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new AuthorConfiguration());
         modelBuilder.ApplyConfiguration(new BookConfiguration());
         modelBuilder.ApplyConfiguration(new GenreConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 }
