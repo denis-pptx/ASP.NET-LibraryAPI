@@ -20,14 +20,14 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
         builder.Property(x => x.Description)
             .HasMaxLength(300);
 
-        builder.HasOne(x => x.Genre)
-            .WithMany()
-            .HasForeignKey(x => x.GenreId)
-            .OnDelete(DeleteBehavior.Restrict);
+        //builder.HasOne(x => x.Genre)
+        //    .WithMany()
+        //    .HasForeignKey(x => x.GenreId)
+        //    .OnDelete(DeleteBehavior.Restrict);
 
-        builder.HasOne(x => x.Author)
-            .WithMany()
-            .HasForeignKey(x => x.AuthorId)
-            .OnDelete(DeleteBehavior.Restrict);
+        //builder.HasOne(x => x.Author)
+        //    .WithMany()
+        //    .HasForeignKey(x => x.AuthorId)
+        //    .OnDelete(DeleteBehavior.Restrict);
     }
 }
