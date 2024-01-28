@@ -1,5 +1,6 @@
 ﻿namespace Library.API.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class GenreController(IGenreService genreService) : ControllerBase
