@@ -13,7 +13,7 @@ public class GenreController(IGenreService genreService) : ControllerBase
     {
         var result = await _genreService.CreateAsync(genreDto);
 
-        return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
+        return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
     }
 
     // GET: api/<GenreController>

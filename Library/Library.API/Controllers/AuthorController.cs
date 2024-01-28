@@ -13,7 +13,7 @@ public class AuthorController(IAuthorService authorService) : ControllerBase
     {
         var result = await _authorService.CreateAsync(authorDto);
 
-        return CreatedAtAction(nameof(Post), new { id = result.Id }, result);
+        return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
     }
 
     // GET: api/<AuthorController>
