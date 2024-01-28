@@ -3,9 +3,16 @@
 public class BookValidator : AbstractValidator<BookDto>
 {
     private readonly IRepository<Book> _bookRepository;
-    public BookValidator(IRepository<Book> bookRepository)
+    private readonly IRepository<Author> _authorRepository;
+    private readonly IRepository<Genre> _genreRepository;
+    public BookValidator(
+        IRepository<Book> bookRepository, 
+        IRepository<Author> authorRepository, 
+        IRepository<Genre> genreRepository)
     {
         _bookRepository = bookRepository;
+        _authorRepository = authorRepository;
+        _genreRepository = genreRepository;
 
         RuleFor(b => b.ISBN)
             .NotEmpty()
@@ -32,5 +39,15 @@ public class BookValidator : AbstractValidator<BookDto>
                     context.AddFailure("CaptureDate must be less than or equal to ReturnDate");
                 }
             });
+
+        RuleFor(b => b.AuthorId)
+            .NotEmpty()
+            .Must(AuthorId => _authorRepository.IsExistsAsync(AuthorId).Result)
+            .WithMessage("There is no author with such AuthorId");
+
+        RuleFor(b => b.GenreId)
+            .NotEmpty()
+            .Must(GenreId => _genreRepository.IsExistsAsync(GenreId).Result)
+            .WithMessage("There is no author with such GenreId");
     }
 }

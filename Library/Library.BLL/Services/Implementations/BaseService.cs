@@ -4,8 +4,8 @@ public abstract class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, T
     where TEntity : Entity
     where TEntityDto : EntityDto
 {
-    private readonly IRepository<TEntity> _entityRepository;
-    private readonly IMapper _mapper;
+    protected readonly IRepository<TEntity> _entityRepository;
+    protected readonly IMapper _mapper;
 
     public BaseService(IRepository<TEntity> entityRepository, IMapper mapper)
     {
