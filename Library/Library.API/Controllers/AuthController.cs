@@ -15,7 +15,7 @@ public class AuthController(IUserService userService, IOptions<AuthOptions> opti
 
     // POST api/<AuthController>/register
     [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
+    public async Task<IActionResult> Register([FromBody] RegisterDto registerDto, CancellationToken cancellationToken)
     {
         var userDto = new UserDto()
         {
@@ -23,16 +23,16 @@ public class AuthController(IUserService userService, IOptions<AuthOptions> opti
             Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password)
         };
 
-        await _userService.CreateAsync(userDto);
+        await _userService.CreateAsync(userDto, cancellationToken);
 
         return Ok();
     }
 
     // POST api/<AuthController>/login
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+    public async Task<IActionResult> Login([FromBody] LoginDto loginDto, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetByLoginAsync(loginDto.Login);
+        var user = await _userService.GetByLoginAsync(loginDto.Login, cancellationToken);
 
         if (!BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash))
         {
