@@ -2,5 +2,5 @@
 
 public interface IUserService : IBaseService<User, UserDto>
 {
-    Task<User> GetByLoginAsync(string login);
+    Task<User> GetByLoginAsync(string login, CancellationToken token = default);
 }

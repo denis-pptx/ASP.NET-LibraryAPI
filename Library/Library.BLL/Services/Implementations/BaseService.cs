@@ -13,59 +13,59 @@ public abstract class BaseService<TEntity, TEntityDto> : IBaseService<TEntity, T
         _mapper = mapper;
     }
 
-    public async Task<TEntity> CreateAsync(TEntityDto entityDto)
+    public async virtual Task<TEntity> CreateAsync(TEntityDto entityDto, CancellationToken token)
     {
         var entity = _mapper.Map<TEntityDto, TEntity>(entityDto);
-        var result = await _entityRepository.AddAsync(entity);
+        var result = await _entityRepository.AddAsync(entity, token);
 
         return result;
     }
 
-    public async Task<TEntity> DeleteByIdAsync(int id)
+    public async virtual Task<TEntity> DeleteByIdAsync(int id, CancellationToken token)
     {
-        if (!await _entityRepository.IsExistsAsync(id))
+        if (!await _entityRepository.IsExistsAsync(id, token))
         {
             throw new ApiException(HttpStatusCode.NotFound, $"{typeof(TEntity).Name} is not found");
         }
 
-        var entity = await _entityRepository.GetByIdAsync(id);
-        await _entityRepository.DeleteAsync(entity);
+        var entity = await _entityRepository.GetByIdAsync(id, token);
+        await _entityRepository.DeleteAsync(entity, token);
 
         return entity;
     }
 
-    public async Task<IEnumerable<TEntity>> GetAsync()
+    public async virtual Task<IEnumerable<TEntity>> GetAsync(CancellationToken token)
     {
-        var entities = await _entityRepository.GetAsync();
+        var entities = await _entityRepository.GetAsync(token);
 
         return entities;
     }
 
-    public async Task<TEntity> GetByIdAsync(int id)
+    public async virtual Task<TEntity> GetByIdAsync(int id, CancellationToken token)
     {
-        if (!await _entityRepository.IsExistsAsync(id))
+        if (!await _entityRepository.IsExistsAsync(id, token))
         {
             throw new ApiException(HttpStatusCode.NotFound, $"{typeof(TEntity).Name} is not found");
         }
 
-        var entity = await _entityRepository.GetByIdAsync(id);
+        var entity = await _entityRepository.GetByIdAsync(id, token);
 
         return entity;
     }
 
-    public async Task<TEntity> UpdateAsync(int id, TEntityDto entityDto)
+    public async virtual Task<TEntity> UpdateAsync(int id, TEntityDto entityDto, CancellationToken token)
     {
-        if (!await _entityRepository.IsExistsAsync(id))
+        entityDto.Id = id;
+
+        if (!await _entityRepository.IsExistsAsync(id, token))
         {
             throw new ApiException(HttpStatusCode.NotFound, $"{nameof(TEntity)} is not found");
         }
 
-        var entity = await _entityRepository.GetByIdAsync(id);
-
-        entityDto.Id = id;
+        var entity = await _entityRepository.GetByIdAsync(id, token);
         _mapper.Map(entityDto, entity);
 
-        var result = await _entityRepository.UpdateAsync(entity);
+        var result = await _entityRepository.UpdateAsync(entity, token);
 
         return result;
     }

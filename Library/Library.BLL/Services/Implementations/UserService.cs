@@ -12,9 +12,9 @@ public class UserService : BaseService<User, UserDto>, IUserService
     }
 
 
-    public async Task<User> GetByLoginAsync(string login)
+    public async Task<User> GetByLoginAsync(string login, CancellationToken token)
     {
-        var user = await _entityRepository.SingleOrDefaultAsync(x => x.Login == login);
+        var user = await _entityRepository.SingleOrDefaultAsync(x => x.Login == login, token);
         if (user == null)
         {
             throw new ApiException(HttpStatusCode.BadRequest, "Invalid login or password");

@@ -7,9 +7,9 @@ public class BookService : BaseService<Book, BookDto>, IBookService
     {
     }
 
-    public async Task<Book> GetByIsbnAsync(string isbn)
+    public async Task<Book> GetByIsbnAsync(string isbn, CancellationToken token)
     {
-        var book = await _entityRepository.SingleOrDefaultAsync(b => b.ISBN == isbn);
+        var book = await _entityRepository.SingleOrDefaultAsync(b => b.ISBN == isbn, token);
 
         if (book == null)
         {
