@@ -4,8 +4,8 @@ public class LoginValidator : AbstractValidator<LoginDto>
 {
     public LoginValidator()
     {
-        RuleFor(u => u.Login).ApplyLoginRules();
+        RuleFor(u => u.Login).NotEmpty();
 
-        RuleFor(u => u.Password).ApplyPasswordRules();
+        RuleFor(u => u.Password).NotEmpty();
     }
 }

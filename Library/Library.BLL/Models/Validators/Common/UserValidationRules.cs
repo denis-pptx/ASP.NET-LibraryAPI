@@ -10,12 +10,6 @@ public static class UserValidationRules
             .Matches("^[a-zA-Z0-9_]*$").WithMessage("Login can only contain letters, numbers, and underscore");
     }
 
-    public static IRuleBuilderOptions<T, string> ApplyLoginUniqueRule<T>(this IRuleBuilder<T, string> ruleBuilder, IRepository<User> userRepository)
-    {
-        return ruleBuilder.Must(login => userRepository.FirstOrDefaultAsync(u => u.Login == login).Result == null)
-            .WithMessage("This login already exists"); ;
-    }
-
     public static IRuleBuilderOptions<T, string> ApplyPasswordRules<T>(this IRuleBuilder<T, string> ruleBuilder)
     {
         return ruleBuilder

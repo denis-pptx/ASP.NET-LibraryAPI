@@ -2,28 +2,12 @@
 
 public class BookValidator : AbstractValidator<BookDto>
 {
-    private readonly IRepository<Book> _bookRepository;
-    private readonly IRepository<Author> _authorRepository;
-    private readonly IRepository<Genre> _genreRepository;
-
-    public BookValidator(
-        IRepository<Book> bookRepository, 
-        IRepository<Author> authorRepository, 
-        IRepository<Genre> genreRepository)
+    public BookValidator()
     {
-        _bookRepository = bookRepository;
-        _authorRepository = authorRepository;
-        _genreRepository = genreRepository;
-
         RuleFor(b => b.ISBN)
             .NotEmpty()
             .MinimumLength(10)
             .MaximumLength(30);
-
-        RuleFor(b => b)
-            .Must(book => _bookRepository
-                .FirstOrDefaultAsync(b => b.ISBN == book.ISBN && b.Id != book.Id).Result == null)
-            .WithMessage("This ISBN already exists");
 
         RuleFor(b => b.Name)
             .NotEmpty()
@@ -43,15 +27,5 @@ public class BookValidator : AbstractValidator<BookDto>
                     context.AddFailure("CaptureDate must be less than or equal to ReturnDate");
                 }
             });
-
-        RuleFor(b => b.AuthorId)
-            .NotEmpty()
-            .Must(AuthorId => _authorRepository.IsExistsAsync(AuthorId).Result)
-            .WithMessage("There is no author with such AuthorId");
-
-        RuleFor(b => b.GenreId)
-            .NotEmpty()
-            .Must(GenreId => _genreRepository.IsExistsAsync(GenreId).Result)
-            .WithMessage("There is no author with such GenreId");
     }
 }

@@ -2,9 +2,9 @@
 
 public class RegisterValidator : AbstractValidator<RegisterDto>
 {
-    public RegisterValidator(IRepository<User> userRepository)
+    public RegisterValidator()
     {
-        RuleFor(u => u.Login).ApplyLoginRules().ApplyLoginUniqueRule(userRepository);
+        RuleFor(u => u.Login).ApplyLoginRules();
 
         RuleFor(u => u.Password).ApplyPasswordRules();
     }

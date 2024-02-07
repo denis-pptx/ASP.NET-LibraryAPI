@@ -32,4 +32,39 @@ public class GenreService : BaseService<Genre, GenreDto>, IGenreService
 
         return genre;
     }
+
+    public async override Task<Genre> CreateAsync(GenreDto genreDto, CancellationToken token)
+    {
+        if (await _entityRepository.FirstOrDefaultAsync(g => g.Name == genreDto.Name) is not null)
+        {
+            throw new ApiException(HttpStatusCode.Conflict, "Genre's name already exists");
+        }
+
+        var genre = _mapper.Map<GenreDto, Genre>(genreDto);
+        var result = await _entityRepository.AddAsync(genre, token);
+
+        return result;
+    }
+
+    public async override Task<Genre> UpdateAsync(int id, GenreDto genreDto, CancellationToken token)
+    {
+        if (!await _entityRepository.IsExistsAsync(id, token))
+        {
+            throw new ApiException(HttpStatusCode.NotFound, "Genre is not found");
+        }
+
+        if (await _entityRepository.FirstOrDefaultAsync(g => g.Name == genreDto.Name && g.Id != id) is not null)
+        {
+            throw new ApiException(HttpStatusCode.Conflict, "Genre's name already exists");
+        }
+
+        genreDto.Id = id;
+
+        var genre = await _entityRepository.GetByIdAsync(id, token);
+        _mapper.Map(genreDto, genre);
+
+        var result = await _entityRepository.UpdateAsync(genre, token);
+
+        return result;
+    }
 }
