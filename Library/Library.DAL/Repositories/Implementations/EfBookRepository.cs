@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Library.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace Library.DAL.Repositories.Implementations;
@@ -14,83 +15,81 @@ public class EfBookRepository : IRepository<Book>
         _books = dbContext.Set<Book>();
     }
 
-    public async Task<bool> IsExistsAsync(int id)
+    public async Task<bool> IsExistsAsync(int id, CancellationToken token)
     {
-        return await _books.AnyAsync(e => e.Id == id);
+        return await _books.AnyAsync(e => e.Id == id, token);
     }
 
-    public async Task<Book> GetByIdAsync(int id)
+    public async Task<Book> GetByIdAsync(int id, CancellationToken token)
     {
         var booksIncluded = _books
             .Include(b => b.Genre)
             .Include(b => b.Author)!;
 
-        return await booksIncluded.SingleAsync(e => e.Id == id);
+        return await booksIncluded.SingleAsync(e => e.Id == id, token);
     }
 
-    public async Task<IEnumerable<Book>> GetAsync()
+    public async Task<IEnumerable<Book>> GetAsync(CancellationToken token)
     {
         var booksIncluded = _books
             .Include(b => b.Genre)
             .Include(b => b.Author)!;
 
-        return await booksIncluded.ToListAsync();
+        return await booksIncluded.ToListAsync(token);
     }
 
-    public async Task<IEnumerable<Book>> GetAsync(Func<Book, bool> filter)
+    public async Task<IEnumerable<Book>> GetAsync(Expression<Func<Book, bool>> filter, CancellationToken token)
     {
         var booksIncluded = _books
             .Include(b => b.Genre)
             .Include(b => b.Author)!;
 
-        return await Task.Run(() => booksIncluded.Where(filter));
+        return await booksIncluded.Where(filter).ToListAsync(token);
     }
 
-    public async Task<Book> AddAsync(Book book)
+    public async Task<Book> AddAsync(Book book, CancellationToken token)
     {
-        await _books.AddAsync(book);
-        await _dbContext.SaveChangesAsync();
+        await _books.AddAsync(book, token);
+        await _dbContext.SaveChangesAsync(token);
 
-        var booksIncluded = _books
-            .Include(b => b.Genre)
-            .Include(b => b.Author)!;
+        _dbContext.Entry(book).Reference(b => b.Genre).Load();
+        _dbContext.Entry(book).Reference(b => b.Author).Load();
 
-        return await booksIncluded.SingleAsync(b => b.Id == book.Id);
+        return book;
     }
 
-    public async Task<Book> UpdateAsync(Book book)
+    public async Task<Book> UpdateAsync(Book book, CancellationToken token)
     {
-        await Task.Run(() => _books.Update(book));
-        await _dbContext.SaveChangesAsync();
+        _books.Update(book);
+        await _dbContext.SaveChangesAsync(token);
 
-        var booksIncluded = _books
-            .Include(b => b.Genre)
-            .Include(b => b.Author)!;
+        _dbContext.Entry(book).Reference(b => b.Genre).Load();
+        _dbContext.Entry(book).Reference(b => b.Author).Load();
 
-        return await booksIncluded.SingleAsync(b => b.Id == book.Id);
+        return book;
     }
 
-    public async Task DeleteAsync(Book book)
+    public async Task DeleteAsync(Book book, CancellationToken token)
     {
-        await Task.Run(() => _books.Remove(book));
-        await _dbContext.SaveChangesAsync();
+        _books.Remove(book);
+        await _dbContext.SaveChangesAsync(token);
     }
 
-    public async Task<Book?> FirstOrDefaultAsync(Func<Book, bool> filter)
+    public async Task<Book?> FirstOrDefaultAsync(Expression<Func<Book, bool>> filter, CancellationToken token)
     {
         var booksIncluded = _books
             .Include(b => b.Genre)
             .Include(b => b.Author)!;
 
-        return await Task.Run(() => booksIncluded.FirstOrDefault(filter));
+        return await booksIncluded.FirstOrDefaultAsync(filter, token);
     }
 
-    public async Task<Book?> SingleOrDefaultAsync(Func<Book, bool> filter)
+    public async Task<Book?> SingleOrDefaultAsync(Expression<Func<Book, bool>> filter, CancellationToken token)
     {
         var booksIncluded = _books
             .Include(b => b.Genre)
             .Include(b => b.Author)!;
 
-        return await Task.Run(() => booksIncluded.SingleOrDefault(filter));
+        return await booksIncluded.SingleOrDefaultAsync(filter, token);
     }
 }

@@ -3,13 +3,13 @@
 public interface IRepository<T> 
     where T : Entity
 {
-    Task<bool> IsExistsAsync(int id);
-    Task<T> GetByIdAsync(int id);
-    Task<IEnumerable<T>> GetAsync();
-    Task<IEnumerable<T>> GetAsync(Func<T, bool> filter);
-    Task<T> AddAsync(T entity);
-    Task<T> UpdateAsync(T entity);
-    Task DeleteAsync(T entity);
-    Task<T?> FirstOrDefaultAsync(Func<T, bool> filter);
-    Task<T?> SingleOrDefaultAsync(Func<T, bool> filter);
+    Task<bool> IsExistsAsync(int id, CancellationToken token = default);
+    Task<T> GetByIdAsync(int id, CancellationToken token = default);
+    Task<IEnumerable<T>> GetAsync(CancellationToken token = default);
+    Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> filter, CancellationToken token = default);
+    Task<T> AddAsync(T entity, CancellationToken token = default);
+    Task<T> UpdateAsync(T entity, CancellationToken token = default);
+    Task DeleteAsync(T entity, CancellationToken token = default);
+    Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken token = default);
+    Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken token = default);
 }

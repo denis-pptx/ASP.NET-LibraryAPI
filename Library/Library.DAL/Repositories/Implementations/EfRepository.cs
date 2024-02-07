@@ -7,55 +7,55 @@ public class EfRepository<T>(ApplicationDbContext dbContext)
     protected readonly ApplicationDbContext _dbContext = dbContext;
     protected readonly DbSet<T> _entities = dbContext.Set<T>();
 
-    public async Task<bool> IsExistsAsync(int id)
+    public async Task<bool> IsExistsAsync(int id, CancellationToken token)
     {
-        return await _entities.AnyAsync(e => e.Id == id);
+        return await _entities.AnyAsync(e => e.Id == id, token);
     }
 
-    public async Task<T> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(int id, CancellationToken token)
     {
-        return await _entities.SingleAsync(e => e.Id == id);
+        return await _entities.SingleAsync(e => e.Id == id, token);
     }
 
-    public async Task<IEnumerable<T>> GetAsync()
+    public async Task<IEnumerable<T>> GetAsync(CancellationToken token)
     {
-        return await _entities.ToListAsync();
+        return await _entities.ToListAsync(token);
     }
 
-    public async Task<IEnumerable<T>> GetAsync(Func<T, bool> filter)
+    public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> filter, CancellationToken token)
     {
-        return await Task.Run(() => _entities.Where(filter));
+        return await _entities.Where(filter).ToListAsync(token);
     }
 
-    public async Task<T> AddAsync(T entity)
+    public async Task<T> AddAsync(T entity, CancellationToken token)
     {
-        await _entities.AddAsync(entity);
-        await _dbContext.SaveChangesAsync();
+        await _entities.AddAsync(entity, token);
+        await _dbContext.SaveChangesAsync(token);
 
         return entity;
     }
 
-    public async Task<T> UpdateAsync(T entity)
+    public async Task<T> UpdateAsync(T entity, CancellationToken token)
     {
-        await Task.Run(() => _entities.Update(entity));
-        await _dbContext.SaveChangesAsync();
+        _entities.Update(entity);
+        await _dbContext.SaveChangesAsync(token);
 
         return entity;
     }
 
-    public async Task DeleteAsync(T entity)
+    public async Task DeleteAsync(T entity, CancellationToken token)
     {
-        await Task.Run(() => _entities.Remove(entity));
-        await _dbContext.SaveChangesAsync();
+        _entities.Remove(entity);
+        await _dbContext.SaveChangesAsync(token);
     }
 
-    public async Task<T?> FirstOrDefaultAsync(Func<T, bool> filter)
+    public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken token)
     {
-        return await Task.Run(() => _entities.FirstOrDefault(filter));
+        return await _entities.FirstOrDefaultAsync(filter, token);
     }
 
-    public async Task<T?> SingleOrDefaultAsync(Func<T, bool> filter)
+    public async Task<T?> SingleOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken token)
     {
-        return await Task.Run(() => _entities.SingleOrDefault(filter));
+        return await _entities.SingleOrDefaultAsync(filter, token);
     }
 }
