@@ -1,4 +1,6 @@
-﻿namespace Library.DAL.Data;
+﻿using System.Reflection;
+
+namespace Library.DAL.Data;
 
 public class ApplicationDbContext : DbContext
 {
@@ -14,13 +16,7 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.ApplyConfiguration(new AuthorConfiguration());
-        modelBuilder.ApplyConfiguration(new BookConfiguration());
-        modelBuilder.ApplyConfiguration(new GenreConfiguration());
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         modelBuilder.Seed();
     }
 }
