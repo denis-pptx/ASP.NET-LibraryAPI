@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Library.DAL.Data.Configuration;
+﻿namespace Library.DAL.Data.Configuration;
 
 public class AuthorConfiguration : IEntityTypeConfiguration<Author>
 {

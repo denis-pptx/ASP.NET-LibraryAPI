@@ -32,6 +32,9 @@ public class EfRepository<T>(ApplicationDbContext dbContext)
         await _entities.AddAsync(entity, token);
         await _dbContext.SaveChangesAsync(token);
 
+        // For loading navigation properties.
+        entity = await _entities.SingleAsync(e => e.Id == entity.Id, token);
+
         return entity;
     }
 
@@ -39,6 +42,9 @@ public class EfRepository<T>(ApplicationDbContext dbContext)
     {
         _entities.Update(entity);
         await _dbContext.SaveChangesAsync(token);
+
+        // For loading navigation properties.
+        entity = await _entities.SingleAsync(e => e.Id == entity.Id, token);
 
         return entity;
     }

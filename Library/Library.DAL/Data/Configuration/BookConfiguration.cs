@@ -4,6 +4,9 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 {
     public void Configure(EntityTypeBuilder<Book> builder)
     {
+        builder.Navigation(b => b.Author).AutoInclude();
+        builder.Navigation(b => b.Genre).AutoInclude();
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.ISBN)
