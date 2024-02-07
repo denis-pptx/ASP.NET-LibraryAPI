@@ -1,6 +1,4 @@
-﻿using Library.Domain.Entities;
-
-namespace Library.BLL.Services.Implementations;
+﻿namespace Library.BLL.Services.Implementations;
 
 public class GenreService : BaseService<Genre, GenreDto>, IGenreService
 {
