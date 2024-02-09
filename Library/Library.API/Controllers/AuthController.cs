@@ -1,17 +1,15 @@
-﻿using Library.API.Options;
-using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-
-namespace Library.API.Controllers;
+﻿namespace Library.API.Controllers;
 
 [Route("api")]
 [ApiController]
-public class AuthController(IUserService userService, IOptions<AuthOptions> options) 
-    : Controller
+public class AuthController : Controller
 {
-    private readonly IUserService _userService = userService;
-    private readonly AuthOptions _authOptions = options.Value;
+    private readonly IUserService _userService;
+
+    public AuthController(IUserService userService)
+    {
+        _userService = userService;
+    }
 
     // POST api/<AuthController>/register
     [HttpPost("register")]
@@ -39,23 +37,8 @@ public class AuthController(IUserService userService, IOptions<AuthOptions> opti
             return BadRequest("Invalid login or password");
         }
 
-        return Ok(CreateToken(user));
-    }
+        var token = _userService.CreateToken(user);
 
-    private string CreateToken(User user)
-    {
-        List<Claim> claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Login) };
-
-        var jwt = new JwtSecurityToken(
-            issuer: _authOptions.Issuer,
-            audience: _authOptions.Audience,
-            claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromHours(1)),
-            signingCredentials: new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.SecretKey)), 
-                SecurityAlgorithms.HmacSha256)
-            );
-        
-        return new JwtSecurityTokenHandler().WriteToken(jwt);
+        return Ok(token);
     }
 }

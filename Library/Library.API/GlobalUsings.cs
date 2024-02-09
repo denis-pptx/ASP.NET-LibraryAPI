@@ -15,9 +15,10 @@ global using Library.BLL.Models.Validators;
 global using Library.BLL.Services.Implementations;
 global using Library.BLL.Services.Interfaces;
 global using Library.BLL.Exceptions;
+global using Library.BLL.Models.Options;
+
 
 global using Library.API.Extensions;
-global using Library.API.Options;
 global using Library.API.Handlers;
 
 global using Library.DAL.Data;

@@ -1,16 +1,22 @@
 ﻿using Library.BLL.Models.DTOs;
+using Library.BLL.Models.Options;
 using Library.DAL.Entities;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 namespace Library.BLL.Services.Implementations;
 
 public class UserService : BaseService<User, UserDto>, IUserService
 {
-    public UserService(IRepository<User> entityRepository, IMapper mapper)
+    private AuthOptions _authOptions;
+
+    public UserService(IRepository<User> entityRepository, IMapper mapper, IOptions<AuthOptions> authOptions)
         : base(entityRepository, mapper)
     {
+        _authOptions = authOptions.Value;
     }
 
     public async Task<User> GetByLoginAsync(string login, CancellationToken token)
@@ -56,5 +62,22 @@ public class UserService : BaseService<User, UserDto>, IUserService
         var result = await _entityRepository.UpdateAsync(user, token);
 
         return result;
+    }
+
+    public string CreateToken(User user)
+    {
+        List<Claim> claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Login) };
+
+        var jwt = new JwtSecurityToken(
+            issuer: _authOptions.Issuer,
+            audience: _authOptions.Audience,
+            claims: claims,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromHours(1)),
+        signingCredentials: new SigningCredentials(
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authOptions.SecretKey)),
+                SecurityAlgorithms.HmacSha256)
+            );
+
+        return new JwtSecurityTokenHandler().WriteToken(jwt);
     }
 }

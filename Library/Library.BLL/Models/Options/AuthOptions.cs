@@ -1,4 +1,4 @@
-﻿namespace Library.API.Options;
+﻿namespace Library.BLL.Models.Options;
 
 public class AuthOptions
 {
